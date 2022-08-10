@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom'
 
 export function Post() {
-  const { id } = useParams()
+  // const { id } = useParams()
 
-  console.log('Rota com id', id)
+  // console.log('Rota com id', id)
 
   return (
     <div>
