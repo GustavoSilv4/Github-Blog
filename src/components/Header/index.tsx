@@ -1,7 +1,10 @@
+import image from '../../assets/Header-image.svg'
+import { HeaderContainer } from './styles'
+
 export function Header() {
   return (
-    <div>
-      <h1>Header</h1>
-    </div>
+    <HeaderContainer>
+      <img src={image} alt="" />
+    </HeaderContainer>
   )
 }
