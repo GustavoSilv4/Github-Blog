@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
-export const CardAboutContainer = styled.div`
+export const CardAboutContainer = styled.section`
   width: 100%;
-  max-width: 864px;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 0 1.5rem;
   position: relative;
 
   margin-top: -5.2rem;
