@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import { CardAboutPost } from './components/CardAboutPost'
 
 export function Post() {
   // const { id } = useParams()
@@ -7,7 +8,7 @@ export function Post() {
 
   return (
     <div>
-      <h1>POST</h1>
+      <CardAboutPost />
     </div>
   )
 }
