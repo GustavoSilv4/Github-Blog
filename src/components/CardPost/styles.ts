@@ -10,6 +10,10 @@ export const CardContent = styled.div`
 
   background-color: ${(props) => props.theme['base-post']};
 
+  &:hover {
+    outline: 2px solid ${(props) => props.theme['base-label']};
+  }
+
   main {
     display: -webkit-box;
     -webkit-line-clamp: 4;
