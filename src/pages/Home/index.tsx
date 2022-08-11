@@ -1,5 +1,6 @@
+import { CardPost } from '../../components/CardPost'
 import { CardAbout } from './components/CardAbout'
-import { FormSectionContainer } from './styles'
+import { CardsPostContainer, FormSectionContainer } from './styles'
 
 export function Home() {
   return (
@@ -15,6 +16,15 @@ export function Home() {
           <input type="text" placeholder="Buscar conteúdo" />
         </form>
       </FormSectionContainer>
+
+      <CardsPostContainer>
+        <CardPost />
+        <CardPost />
+        <CardPost />
+        <CardPost />
+        <CardPost />
+        <CardPost />
+      </CardsPostContainer>
     </div>
   )
 }
