@@ -37,7 +37,7 @@ export const CardHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 0.75rem;
+  /* margin-top: 0.75rem; */
   margin-bottom: 0.5rem;
 
   span {
