@@ -3,6 +3,10 @@ import styled from 'styled-components'
 export const CardContainer = styled.div`
   max-width: 26rem;
   max-height: 16.25rem;
+
+  a {
+    text-decoration: none;
+  }
 `
 export const CardContent = styled.div`
   border-radius: 10px;
@@ -22,11 +26,12 @@ export const CardContent = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
 
+    color: ${(props) => props.theme['base-text']};
+
     span {
       height: 100%;
       font-size: 1rem;
       line-height: 1.6;
-      color: ${(props) => props.theme['base-text']};
     }
   }
 `
