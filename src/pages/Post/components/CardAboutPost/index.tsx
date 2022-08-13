@@ -1,11 +1,21 @@
+import { NavLink } from 'react-router-dom'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarDay, faComment, faArrowUpRightFromSquare, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 import { CardAboutContainer, CardAboutContent, CardFooter, CardHeader, CardMain } from './styles'
-import { NavLink } from 'react-router-dom'
+import { formatedDistanceToNow } from '../../../../utils/formatedDate'
 
-export function CardAboutPost() {
+interface CardProps {
+  title: string
+  createdAt: string
+  link: string
+  comments: number
+  userName: string
+}
+
+export function CardAboutPost({ title, userName = 'Não definido', link, comments, createdAt = new Date().toISOString() }: CardProps) {
   return (
     <CardAboutContainer>
       <CardAboutContent>
@@ -14,25 +24,26 @@ export function CardAboutPost() {
             <FontAwesomeIcon icon={faChevronLeft} size="lg" />
             VOLTAR
           </NavLink>
-          <a href="https://github.com/Gustavosilv4">
+          <a href={link}>
             VER NO GITHUB
             <FontAwesomeIcon icon={faArrowUpRightFromSquare} size="lg" />
           </a>
         </CardHeader>
         <CardMain>
-          <span>Gustavo Silva</span>
+          <span>{title}</span>
         </CardMain>
         <CardFooter>
           <span>
             <FontAwesomeIcon icon={faGithub} />
-            cameronwll
+            {userName}
           </span>
           <span>
             <FontAwesomeIcon icon={faCalendarDay} />
-            Há 1 dia
+            {formatedDistanceToNow(createdAt)}
           </span>
           <span>
-            <FontAwesomeIcon icon={faComment} />5 comentários
+            <FontAwesomeIcon icon={faComment} />
+            {comments} {comments > 1 || comments === 0 ? 'comentários' : 'comentário'}
           </span>
         </CardFooter>
       </CardAboutContent>

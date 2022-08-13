@@ -8,4 +8,5 @@ export const PostContainer = styled.main`
 `
 export const PostContent = styled.div`
   padding: 2.5rem 2rem;
+  white-space: pre-wrap;
 `

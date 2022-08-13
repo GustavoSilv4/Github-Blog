@@ -1,23 +1,49 @@
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { api } from '../../lib/axios'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
 import { CardAboutPost } from './components/CardAboutPost'
 import { PostContainer, PostContent } from './styles'
 
-export function Post() {
-  // const { id } = useParams()
+interface UserName {
+  login: string
+}
 
-  // console.log('Rota com id', id)
+interface IssueData {
+  id: number
+  title: string
+  body: string
+  comments: number
+  created_at: string
+  html_url: string
+  user: UserName
+}
+
+export function Post() {
+  const { id } = useParams()
+
+  const [issue, setIssue] = useState<IssueData>({} as IssueData)
+
+  useEffect(() => {
+    async function getAnIssue() {
+      const response = await api.get(`/repos/gustavosilv4/github-blog/issues/${id}`)
+      console.log('chegou o id', id)
+
+      setIssue(response.data)
+    }
+    getAnIssue()
+  }, [id])
 
   return (
     <div>
-      <CardAboutPost />
+      <CardAboutPost title={issue.title} comments={issue.comments} createdAt={issue.created_at} link={issue.html_url} userName={issue.user?.login} />
 
       <PostContainer>
         <PostContent>
           <span>
-            Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures
-            available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
-            Dynamic typing JavaScript is a loosely typed and dynamic language. Variables in JavaScript are not directly associated with any particular value type, and any variable
-            can be assigned (and re-assigned) values of all types:
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{issue.body}</ReactMarkdown>
           </span>
         </PostContent>
       </PostContainer>
