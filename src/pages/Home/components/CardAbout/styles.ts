@@ -8,6 +8,10 @@ export const CardAboutContainer = styled.section`
   position: relative;
 
   margin-top: -5.2rem;
+
+  @media (max-width: 760px) {
+    margin-top: -2rem;
+  }
 `
 
 export const CardAboutContent = styled.div`
