@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import { CardPost } from '../../components/CardPost'
 import { CardAbout } from './components/CardAbout'
-import { CardsPostContainer, FormSectionContainer } from './styles'
+import { CardsPostContainer, ErrorContainer, FormSectionContainer } from './styles'
 interface IssuesList {
   id: number
   title: string
@@ -31,19 +31,27 @@ export function Home() {
   })
 
   const [issues, setIssues] = useState<IssuesList[]>([])
-
-  async function getIssuesWithFilter(query?: string) {
-    const response = await api.get('/search/issues', {
-      params: {
-        q: `${query}repo:gustavosilv4/github-blog`,
-      },
-    })
-    setIssues(response.data.items)
-  }
+  const [error, setError] = useState(false)
 
   const inputContent = watch('searchPost')
 
   useEffect(() => {
+    async function getIssuesWithFilter(query?: string) {
+      try {
+        const response = await api.get('/search/issues', {
+          params: {
+            q: `${query}repo:gustavosilv4/github-blog`,
+          },
+        })
+        setIssues(response.data.items)
+        setError(false)
+      } catch (error: any) {
+        if (error.response.status === 403) {
+          setError(true)
+        }
+      }
+    }
+
     getIssuesWithFilter(inputContent)
   }, [inputContent])
 
@@ -69,11 +77,21 @@ export function Home() {
         }}
       />
 
-      <CardsPostContainer>
-        {issues.map((issue) => (
-          <CardPost key={issue.id} title={issue.title} numberPost={issue.number} contentPost={issue.body} createdAt={issue.created_at} />
-        ))}
-      </CardsPostContainer>
+      {error ? (
+        <ErrorContainer>
+          <span>HOUVE UM ERRO NA REQUISIÇÃO AGUARDE 1 MINUTO! E RECARREGUE A PAGINA.</span>
+        </ErrorContainer>
+      ) : issues.length === 0 ? (
+        <ErrorContainer>
+          <span>NENHUM POST ENCONTRADO</span>
+        </ErrorContainer>
+      ) : (
+        <CardsPostContainer>
+          {issues.map((issue) => (
+            <CardPost key={issue.id} title={issue.title} numberPost={issue.number} contentPost={issue.body} createdAt={issue.created_at} />
+          ))}
+        </CardsPostContainer>
+      )}
     </div>
   )
 }

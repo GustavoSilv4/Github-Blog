@@ -55,3 +55,20 @@ export const CardsPostContainer = styled.div`
     grid-template-columns: repeat(1, 1fr);
   }
 `
+
+export const ErrorContainer = styled.div`
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto 5rem auto;
+  padding: 0 1.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: bold;
+  }
+`
