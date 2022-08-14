@@ -31,6 +31,10 @@ export const ImageGithub = styled.div`
     border-radius: 8px;
     overflow: hidden;
   }
+
+  @media (max-width: 760px) {
+    display: none;
+  }
 `
 
 export const CardHeader = styled.header`
@@ -93,6 +97,7 @@ export const CardMain = styled.main`
 export const CardFooter = styled.footer`
   display: flex;
   gap: 1.5rem;
+  flex-wrap: wrap;
 
   span {
     display: flex;

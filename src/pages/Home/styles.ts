@@ -50,4 +50,8 @@ export const CardsPostContainer = styled.div`
   gap: 2rem;
 
   margin-bottom: 14rem;
+
+  @media (max-width: 760px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `

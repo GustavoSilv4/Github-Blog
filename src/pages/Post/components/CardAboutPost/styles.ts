@@ -70,6 +70,7 @@ export const CardMain = styled.main`
 export const CardFooter = styled.footer`
   display: flex;
   gap: 1.5rem;
+  flex-wrap: wrap;
 
   span {
     display: flex;
